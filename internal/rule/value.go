@@ -122,18 +122,19 @@ func ExprFromValue(val interface{}) bzl.Expr {
 
 		case PlatformStrings:
 			var pieces []bzl.Expr
-			if len(val.Generic) > 0 {
-				pieces = append(pieces, ExprFromValue(val.Generic))
-			}
-			if len(val.OS) > 0 {
-				pieces = append(pieces, ExprFromValue(val.OS))
-			}
-			if len(val.Arch) > 0 {
-				pieces = append(pieces, ExprFromValue(val.Arch))
-			}
-			if len(val.Platform) > 0 {
-				pieces = append(pieces, ExprFromValue(val.Platform))
-			}
+			pieces = append(pieces, ExprFromValue(val.Flat()))
+			//if len(val.Generic) > 0 {
+			//pieces = append(pieces, ExprFromValue(val.Generic))
+			//}
+			//if len(val.OS) > 0 {
+			//pieces = append(pieces, ExprFromValue(val.OS))
+			//}
+			//if len(val.Arch) > 0 {
+			//pieces = append(pieces, ExprFromValue(val.Arch))
+			//}
+			//if len(val.Platform) > 0 {
+			//pieces = append(pieces, ExprFromValue(val.Platform))
+			//}
 			if len(pieces) == 0 {
 				return &bzl.ListExpr{}
 			} else if len(pieces) == 1 {
